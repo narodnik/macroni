@@ -6,14 +6,16 @@ connection = sqlite3.connect("main.db")
 cursor = connection.cursor()
 
 carbs_goal = 250
-protein_goal = 190
-fat_goal = 20
+protein_goal = 150
+fat_goal = 60
 
 def to_calories(carbs, protein, fat):
     return 4 * (carbs + protein) + 9 * fat
 
 def print_progress_bar(label, amount, total):
     ratio = amount / total
+    if ratio > 1:
+        ratio = 1
     start = "  " + label + ":" + (10 - len(label)) * " "
     size = 20
     left_size = int(ratio * size)
